@@ -1,0 +1,8 @@
+# compiled stuff
+*.o
+mydb
+
+# editor files
+*.swp
+*.swo
+*~
