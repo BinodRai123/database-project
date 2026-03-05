@@ -1,6 +1,7 @@
 # compiled stuff
 *.o
 mydb
+main
 
 # editor files
 *.swp
