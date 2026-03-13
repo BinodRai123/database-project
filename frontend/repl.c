@@ -1,4 +1,5 @@
 #include "frontend.h"
+#include <string.h>
 
 // Function to read Input from User
 
@@ -17,4 +18,23 @@ void read_input(inputBuffer *new_input_buffer) {
     new_input_buffer->input_length = bytes_count - 1;
     new_input_buffer->input[bytes_count - 1] = 0; 
   }
+}
+
+PrepareResult prepare_statement(inputBuffer *input_field, Statement *statement) {
+
+  //compare insert word from 0 to 6 index 
+  if (strncmp(input_field->input, "insert", 6) == 0) {
+    //it Check at the last of word 'insert' if there is nothing then it will run
+    if (input_field->input[6] == ' ' || '\0') {
+      statement->type = STATEMENT_INSERT;
+      return PREPARE_SUCCESS;
+    }
+  }
+  
+  if (strcmp(input_field->input, "select") == 0) {
+    statement->type = STATEMENT_SELECT;
+    return PREPARE_SUCCESS;
+  }
+
+  return PREPARE_UNRECOGNIZED_STATEMENT;
 }
